@@ -2,8 +2,8 @@ import { useState } from "react";
 import Thumb from "../thumb";
 import Popup from "../popup";
 import styles from "./photos.module.css";
-// import Pagination from "@mui/material/Pagination";
-// import PaginationItem from "@mui/material/PaginationItem";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
 
 export default function Photos({ photos }) {
   const [photo, setPhoto] = useState({});
