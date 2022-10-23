@@ -1,7 +1,6 @@
 .searchBar {
   display: flex;
-  justify-content: center;
-  column-gap: 1em;
+  justify-content: space-between;
   align-items: stretch;
   background-color: black;
   color: white;
@@ -17,6 +16,13 @@
 }
 
 .searchBar h2 {
+  margin: auto 0;
+}
+
+.searchBar a {
+  color: white;
+  font-size: 1.5em;
+  text-decoration: none;
   margin: auto 0;
 }
 
