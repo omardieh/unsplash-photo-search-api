@@ -2,12 +2,9 @@ import { useState } from "react";
 import Thumb from "../thumb";
 import Popup from "../popup";
 import styles from "./photos.module.css";
-// import Pagination from "@mui/material/Pagination";
-// import PaginationItem from "@mui/material/PaginationItem";
 
-export default function Photos({ photos }) {
+export default function Photos({ photos, isPopup, setIsPopup }) {
   const [photo, setPhoto] = useState({});
-  const [isPopup, setIsPopup] = useState(false);
 
   function handleThumbClick(e) {
     setPhoto(e);

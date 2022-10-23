@@ -1,9 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { useEffect, useState } from "react";
-import Photos from "./components/photos";
-import useFetch from "./hooks/useFetch";
-import SearchInput from "./components/search-input";
+import { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/home";
+import Favorite from "./pages/favorite";
 
 // REACT_APP_UNSPLASH_ACCESS
 // REACT_APP_UNSPLASH_SECRET
@@ -12,18 +11,21 @@ function App() {
   const [pageNumber, setPageNumber] = useState(1);
   const [inputValue, setInputValue] = useState("");
   const [totalPages, setTotalPages] = useState(1);
-  const [query, setQuery] = useState(inputValue || "galaxy");
-  console.log(inputValue);
-  //
-  const url = `https://api.unsplash.com/search?page=${pageNumber}&query=${query}&client_id=${process.env.REACT_APP_UNSPLASH_ACCESS}`;
-  const apiResp = useFetch(url, query, pageNumber);
-  //
-  useEffect(() => {
-    if (apiResp.photos) {
-      setTotalPages(apiResp.photos.total_pages);
-    }
-  }, [apiResp]);
+  const [query, setQuery] = useState("galaxy");
+  const [isPopup, setIsPopup] = useState(false);
 
+  const globalStates = {
+    inputValue,
+    setInputValue,
+    totalPages,
+    pageNumber,
+    setPageNumber,
+    setQuery,
+    query,
+    setTotalPages,
+    isPopup,
+    setIsPopup,
+  };
   // useEffect(() => {
   //   async function fetchApi() {
   //     try {
@@ -39,12 +41,12 @@ function App() {
 
   return (
     <div className="App">
-      <SearchInput
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        onClickButton={() => setQuery(inputValue)}
-      />
-      {apiResp.photos && <Photos photos={apiResp.photos.results} />}
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home {...globalStates} />} />
+          <Route path="/favorite" element={<Favorite {...globalStates} />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

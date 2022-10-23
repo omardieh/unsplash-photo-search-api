@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   border: 2px solid #ccc;
-  border-radius: 30px;
   position: relative;
   overflow: hidden;
+  margin: auto;
 }

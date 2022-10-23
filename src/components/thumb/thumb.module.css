@@ -1,7 +1,16 @@
+/* default size : apply to all */
 .thumb {
   border-radius: 30px;
-  height: calc(12em + 1vw);
-  width: calc(12em + 1vw);
+  height: calc(7em + 1vw);
+  width: calc(7em + 1vw);
   object-fit: cover;
   padding: 0.5em;
+}
+
+/* desktop size */
+@media screen and (min-width: 500px) {
+  .thumb {
+    height: calc(12em + 1vw);
+    width: calc(12em + 1vw);
+  }
 }
