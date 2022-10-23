@@ -10,6 +10,10 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  flex-wrap: wrap;
+  padding: 1em;
+  row-gap: 0.5em;
+  height: 100%;
 }
 
 .searchBar h2 {

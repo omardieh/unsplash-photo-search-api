@@ -4,7 +4,15 @@ import { useEffect, useState } from "react";
 import Photos from "./components/photos";
 import useFetch from "./hooks/useFetch";
 import SearchInput from "./components/search-input";
-
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams,
+} from "react-router-dom";
 // REACT_APP_UNSPLASH_ACCESS
 // REACT_APP_UNSPLASH_SECRET
 
@@ -39,12 +47,22 @@ function App() {
 
   return (
     <div className="App">
+      {/* <Router>
+        <Switch>
+          <Route path="/" children={<Home />} />
+        </Switch>
+      </Router> */}
       <SearchInput
         inputValue={inputValue}
         setInputValue={setInputValue}
         onClickButton={() => setQuery(inputValue)}
       />
       {apiResp.photos && <Photos photos={apiResp.photos.results} />}
+      <Pagination
+        count={Math.floor(totalPages / 10)}
+        page={pageNumber}
+        onChange={(e, v) => setPageNumber(v)}
+      />
     </div>
   );
 }
