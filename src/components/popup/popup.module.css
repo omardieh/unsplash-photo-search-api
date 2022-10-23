@@ -1,0 +1,28 @@
+.popupWrapper {
+  position: relative;
+}
+
+.popup {
+  max-height: calc(100vh - 1em);
+  max-width: 100%;
+}
+
+.close {
+  font-size: 2em;
+  font-weight: bold;
+  position: absolute;
+  color: white;
+  padding: 0 0.5em;
+  right: 0.2em;
+  top: 0.2em;
+  padding: 0 0.5em;
+  background: rgb(255, 255, 255, 0.5);
+  border-radius: 7px;
+}
+
+.title {
+  position: absolute;
+  color: white;
+  bottom: 0;
+  padding-left: 0.5em;
+}

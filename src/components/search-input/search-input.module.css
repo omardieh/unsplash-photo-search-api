@@ -1,0 +1,22 @@
+.searchBar {
+  display: flex;
+  justify-content: center;
+  column-gap: 1em;
+  align-items: stretch;
+  background-color: black;
+  color: white;
+  height: 3em;
+  padding: 1em 0;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.searchBar h2 {
+  margin: auto 0;
+}
+
+.searchBar input,
+button {
+  font-size: 1em;
+}
