@@ -1,24 +1,27 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
-function useFetch(url, query, pageNumber) {
-  const [apiResp, setApiResp] = useState([]);
+function useFetch(url) {
   const [error, setError] = useState("");
   const [resp, setResp] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function handleFetch() {
-      try {
-        const resp = await fetch(url);
-        const data = await resp.json();
-        setResp(data);
-      } catch (e) {
-        setError(e);
-      }
+      axios
+        .get(url)
+        .then((resp) => {
+          setResp(resp.data);
+          setLoading(false);
+        })
+        .catch((e) => {
+          setError(e);
+          setLoading(false);
+        });
     }
-
     handleFetch();
-  }, [query, pageNumber, url]);
+  }, [url]);
 
-  return resp;
+  return { resp, error, loading };
 }
 export default useFetch;

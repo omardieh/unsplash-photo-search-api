@@ -2,28 +2,22 @@ import SearchInput from "./../components/search-input/index";
 import Photos from "./../components/photos/index";
 import Pagination from "@mui/material/Pagination";
 import useFetch from "./../hooks/useFetch";
-import { useEffect } from "react";
 
 export default function Home({
   inputValue,
   setInputValue,
-  totalPages,
   pageNumber,
   setPageNumber,
   setQuery,
   query,
-  setTotalPages,
   isPopup,
   setIsPopup,
 }) {
   const url = `https://api.unsplash.com/search?page=${pageNumber}&query=${query}&client_id=${process.env.REACT_APP_UNSPLASH_ACCESS}`;
-  const apiResp = useFetch(url, query, pageNumber);
+  const { resp, error, loading } = useFetch(url);
 
-  useEffect(() => {
-    if (apiResp.photos) {
-      setTotalPages(apiResp.photos.total_pages);
-    }
-  }, [apiResp]);
+  if (loading) return <h2>loading...</h2>;
+  if (error) return <h2>something went wrong...</h2>;
 
   return (
     <div>
@@ -32,16 +26,16 @@ export default function Home({
         setInputValue={setInputValue}
         onClickButton={() => setQuery(inputValue)}
       />
-      {apiResp.photos && (
+      {resp.photos && (
         <Photos
           isPopup={isPopup}
           setIsPopup={setIsPopup}
-          photos={apiResp.photos.results}
+          photos={resp.photos.results}
         />
       )}
       {!isPopup && (
         <Pagination
-          count={Math.floor(totalPages / 10)}
+          count={resp.photos?.total_pages}
           page={pageNumber}
           onChange={(e, v) => setPageNumber(v)}
         />
